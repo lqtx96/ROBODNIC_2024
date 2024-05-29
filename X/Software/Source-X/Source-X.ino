@@ -5,7 +5,38 @@
 #define BUILTIN_LED 2
 #define BUZZER 3
 
+#define LEFT_WHEEL_FORWARD
+#define RIGHT_WHEEL_BACKWARD
+
+#define RIGHT_WHEEL_FORWARD
+#define RIGHT_WHEEL_BACKWARD
+
+#define HAND_UP
+#define HAND_DOWN
+
+#define HAND_GRAB
+#define HAND_RELEASE
+
+
 void buzz(uint8_t repeat = 1, uint8_t duration = 100);
+
+void forward();
+
+void backward();
+
+void rotateLeft();
+
+void rotateRight();
+
+void handUp();
+
+void handDown();
+
+void handGrab();
+
+void handRelease();
+
+void stand();
 
 void setup() {
   pinMode(BUILTIN_LED, OUTPUT);
@@ -27,59 +58,143 @@ void setup() {
 
 void loop() {
   while (ps5.isConnected() == true) {
-    if (ps5.Right()) Serial.println("Right Button");
-    if (ps5.Down()) Serial.println("Down Button");
-    if (ps5.Up()) Serial.println("Up Button");
-    if (ps5.Left()) Serial.println("Left Button");
+    if (ps5.Up()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Forward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Forward");
+      }
+      else {
+        Serial.println("Forward");
+      }
+    }
+    else if (ps5.Down()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Backward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Backward");
+      }
+      else {
+        Serial.println("Backward");
+      }
+    }
+    else if (ps5.Left()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Rotate Left");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Rotate Left");
+      }
+      else {
+        Serial.println("Rotate Left");
+      }  
+    }
+    else if (ps5.Right()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Rotate Right");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Rotate Right");
+      }
+      else {
+        Serial.println("Rotate Right");
+      }
+    }
+    else if (ps5.UpLeft()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Turn Left Forward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Turn Left Forward");
+      }
+      else {
+        Serial.println("Turn Left Forward");
+      }
+    }
+    else if (ps5.UpLeft()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Turn Left Forward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Turn Left Forward");
+      }
+      else {
+        Serial.println("Turn Left Forward");
+      }
+    }
+    else if (ps5.UpRight()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Turn Right Forward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Turn Right Forward");
+      }
+      else {
+        Serial.println("Turn Right Forward");
+      }
+    }
+    else if (ps5.DownLeft()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Turn Left Backward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Turn Left Backward");
+      }
+      else {
+        Serial.println("Turn Left Backward");
+      }
+    }
+    else if (ps5.DownRight()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Turn Right Backward");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Turn Right Backward");
+      }
+      else {
+        Serial.println("Turn Right Backward");
+      }
+    }
 
-    if (ps5.Square()) Serial.println("Square Button");
-    if (ps5.Cross()) Serial.println("Cross Button");
-    if (ps5.Circle()) Serial.println("Circle Button");
-    if (ps5.Triangle()) Serial.println("Triangle Button");
+    else if (ps5.Triangle()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Hand Up");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Hand Up");
+      }
+      else {
+        Serial.println("Hand Up");
+      }
+    }
+    else if (ps5.Cross()) {
+      if(ps5.R1()) {
+        Serial.println("Fast Hand Down");
+      }
+      else if (ps5.L1()) {
+        Serial.println("Slow Hand Down");
+      }
+      else {
+        Serial.println("Hand Down");
+      }
+    }
+    else if (ps5.Square()) {
+      Serial.println("Grip");    
+    }
+    else if (ps5.Circle()) {
+      Serial.println("Release");
+    }
 
-    if (ps5.UpRight()) Serial.println("Up Right");
-    if (ps5.DownRight()) Serial.println("Down Right");
-    if (ps5.UpLeft()) Serial.println("Up Left");
-    if (ps5.DownLeft()) Serial.println("Down Left");
-
-    if (ps5.L1()) Serial.println("L1 Button");
-    if (ps5.R1()) Serial.println("R1 Button");
-
-    if (ps5.Share()) Serial.println("Share Button");
-    if (ps5.Options()) Serial.println("Options Button");
-    if (ps5.L3()) Serial.println("L3 Button");
-    if (ps5.R3()) Serial.println("R3 Button");
-
-    if (ps5.PSButton()) Serial.println("PS Button");
-    if (ps5.Touchpad()) Serial.println("Touch Pad Button");
-
-//    if (ps5.L2()) {
-//      Serial.printf("L2 button at %d\n", ps5.L2Value());
-//    }
-//    if (ps5.R2()) {
-//      Serial.printf("R2 button at %d\n", ps5.R2Value());
-//    }
-//
-//    if (ps5.LStickX()) {
-//      Serial.printf("Left Stick x at %d\n", ps5.LStickX());
-//    }
-//    if (ps5.LStickY()) {
-//      Serial.printf("Left Stick y at %d\n", ps5.LStickY());
-//    }
-//    if (ps5.RStickX()) {
-//      Serial.printf("Right Stick x at %d\n", ps5.RStickX());
-//    }
-//    if (ps5.RStickY()) {
-//      Serial.printf("Right Stick y at %d\n", ps5.RStickY());
-//    }
-
-//    if (ps5.Charging()) Serial.println("The controller is charging"); //doesn't work
-//    if (ps5.Audio()) Serial.println("The controller has headphones attached"); //doesn't work
-//    if (ps5.Mic()) Serial.println("The controller has a mic attached"); //doesn't work
-//
-//    Serial.println("Battery Level : %d\n", ps5.Battery()); //doesn't work
+    else {
+      Serial.println("Stand");
+    }
     
-//    delay(300);
+//      Serial.printf("LX: %d", ps5.LStickX());
+//      Serial.printf(" --- LY: %d", ps5.LStickY());
+//      Serial.printf(" --- RX: %d", ps5.RStickX());
+//      Serial.printf(" --- RY: %d\n", ps5.RStickY());
   }
 }
 
@@ -89,11 +204,15 @@ void buzz(uint8_t repeat, uint8_t duration) {
     
   for (uint8_t i = 0; i < repeat - 1; i++) {
     digitalWrite(BUZZER, HIGH);
+    digitalWrite(BUILTIN_LED, HIGH);
     delay(duration);
     digitalWrite(BUZZER, LOW);
+    digitalWrite(BUILTIN_LED, LOW);
     delay(duration);
   }
   digitalWrite(BUZZER, HIGH);
+  digitalWrite(BUILTIN_LED, HIGH);
   delay(duration);
   digitalWrite(BUZZER, LOW);
+  digitalWrite(BUILTIN_LED, LOW);
 }
