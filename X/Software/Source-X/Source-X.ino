@@ -17,6 +17,14 @@
 #define HAND_GRAB
 #define HAND_RELEASE
 
+#define SLOW_OFFSET 0.5
+#define NORMAL_OFFSET 0.75
+#define FAST_OFFSET 1
+
+uint8_t leftForwardPWM = 0;
+uint8_t leftBackwardPWM = 0;
+uint8_t rightForwardPWM = 0;
+uint8_t rightBackwardPWM = 0;
 
 void buzz(uint8_t repeat = 1, uint8_t duration = 100);
 
@@ -60,24 +68,72 @@ void loop() {
   while (ps5.isConnected() == true) {
     if (ps5.Up()) {
       if(ps5.R1()) {
-        Serial.println("Fast Forward");
+        if(ps5.RStickX() > 16) {
+          Serial.println("Fast Turn Right Forward");
+        }
+        else if (ps5.RStickX() < -16) {
+          Serial.println("Fast Turn Left Forward");
+        }
+        else {
+          Serial.println("Fast Forward");
+        }
       }
       else if (ps5.L1()) {
-        Serial.println("Slow Forward");
+        if(ps5.RStickX() > 16) {
+          Serial.println("Slow Turn Right Forward");
+        }
+        else if (ps5.RStickX() < -16) {
+          Serial.println("Slow Turn Left Forward");
+        }
+        else {
+          Serial.println("Slow Forward");
+        }
       }
       else {
-        Serial.println("Forward");
+        if(ps5.RStickX() > 16) {
+          Serial.println("Turn Right Forward");
+        }
+        else if (ps5.RStickX() < -16) {
+          Serial.println("Turn Left Forward");
+        }
+        else {
+          Serial.println("Forward");
+        }
       }
     }
     else if (ps5.Down()) {
       if(ps5.R1()) {
-        Serial.println("Fast Backward");
+        if(ps5.RStickX() > 16) {
+          Serial.println("Fast Turn Right Backward");
+        }
+        else if (ps5.RStickX() < -16) {
+          Serial.println("Fast Turn Left Backward");
+        }
+        else {
+          Serial.println("Fast Backward");
+        }
       }
       else if (ps5.L1()) {
-        Serial.println("Slow Backward");
+        if(ps5.RStickX() > 16) {
+          Serial.println("Slow Turn Right Backward");
+        }
+        else if (ps5.RStickX() < -16) {
+          Serial.println("Slow Turn Left Backward");
+        }
+        else {
+          Serial.println("Slow Backward");
+        }
       }
       else {
-        Serial.println("Backward");
+        if(ps5.RStickX() > 16) {
+          Serial.println("Turn Right Backward");
+        }
+        else if (ps5.RStickX() < -16) {
+          Serial.println("Turn Left Backward");
+        }
+        else {
+          Serial.println("Backward");
+        }
       }
     }
     else if (ps5.Left()) {
@@ -100,61 +156,6 @@ void loop() {
       }
       else {
         Serial.println("Rotate Right");
-      }
-    }
-    else if (ps5.UpLeft()) {
-      if(ps5.R1()) {
-        Serial.println("Fast Turn Left Forward");
-      }
-      else if (ps5.L1()) {
-        Serial.println("Slow Turn Left Forward");
-      }
-      else {
-        Serial.println("Turn Left Forward");
-      }
-    }
-    else if (ps5.UpLeft()) {
-      if(ps5.R1()) {
-        Serial.println("Fast Turn Left Forward");
-      }
-      else if (ps5.L1()) {
-        Serial.println("Slow Turn Left Forward");
-      }
-      else {
-        Serial.println("Turn Left Forward");
-      }
-    }
-    else if (ps5.UpRight()) {
-      if(ps5.R1()) {
-        Serial.println("Fast Turn Right Forward");
-      }
-      else if (ps5.L1()) {
-        Serial.println("Slow Turn Right Forward");
-      }
-      else {
-        Serial.println("Turn Right Forward");
-      }
-    }
-    else if (ps5.DownLeft()) {
-      if(ps5.R1()) {
-        Serial.println("Fast Turn Left Backward");
-      }
-      else if (ps5.L1()) {
-        Serial.println("Slow Turn Left Backward");
-      }
-      else {
-        Serial.println("Turn Left Backward");
-      }
-    }
-    else if (ps5.DownRight()) {
-      if(ps5.R1()) {
-        Serial.println("Fast Turn Right Backward");
-      }
-      else if (ps5.L1()) {
-        Serial.println("Slow Turn Right Backward");
-      }
-      else {
-        Serial.println("Turn Right Backward");
       }
     }
 
