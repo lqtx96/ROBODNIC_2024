@@ -41,18 +41,18 @@ void stand();
 void setup() {
   pinMode(BUILTIN_LED, OUTPUT);
   pinMode(BUZZER, OUTPUT);
-  
+
   ps5.begin("10:18:49:6F:39:9F"); // DualSense's MAC address
-  
+
   Serial.begin(115200);
 
   Serial.println("Waiting for controller");
-  
-  while (ps5.isConnected() != true) {    
+
+  while (ps5.isConnected() != true) {
   }
-  
+
   Serial.println("Ready!");
-  
+
   buzz(3, 50);
 }
 
@@ -89,7 +89,7 @@ void loop() {
       }
       else {
         Serial.println("Rotate Left");
-      }  
+      }
     }
     else if (ps5.Right()) {
       if(ps5.R1()) {
@@ -181,7 +181,7 @@ void loop() {
       }
     }
     else if (ps5.Square()) {
-      Serial.println("Grip");    
+      Serial.println("Grip");
     }
     else if (ps5.Circle()) {
       Serial.println("Release");
@@ -190,7 +190,7 @@ void loop() {
     else {
       Serial.println("Stand");
     }
-    
+
 //      Serial.printf("LX: %d", ps5.LStickX());
 //      Serial.printf(" --- LY: %d", ps5.LStickY());
 //      Serial.printf(" --- RX: %d", ps5.RStickX());
@@ -201,7 +201,7 @@ void loop() {
 void buzz(uint8_t repeat, uint8_t duration) {
   if ((repeat == 0) || (duration == 0))
     return;
-    
+
   for (uint8_t i = 0; i < repeat - 1; i++) {
     digitalWrite(BUZZER, HIGH);
     digitalWrite(BUILTIN_LED, HIGH);
